@@ -41,13 +41,13 @@ insertValue' (BranchNode l r) (mask:remainingMasks) val = case val .&. mask == 0
 
 
 masks :: [Int]
-masks = map (shiftL 1) [0..31]
+masks = map (shiftL 1) [31,30..0]
 
 
 maxXor :: [Int] -> Int
 maxXor vals = maxXor' node node
   where
-    node = foldr (flip insertValue) Nil vals
+    node = insertValues vals
 
 
 maxXor' :: Node -> Node -> Int
