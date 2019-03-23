@@ -5,18 +5,6 @@ import Data.List (tails)
 data Node = LeafNode Int | BranchNode Node Node | Nil deriving (Show)
 
 
-depths :: Node -> [Int]
-depths (LeafNode _) = [0]
-depths Nil = []
-depths (BranchNode l r) = map (+1) (depths l ++ depths r)
-
-
-retrieveValues :: Node -> [[Int]]
-retrieveValues (LeafNode _) = [[]]
-retrieveValues Nil = []
-retrieveValues (BranchNode l r) = map (0:) (retrieveValues l) ++ map (1:) (retrieveValues r)
-
-
 emptyTrie :: Node
 emptyTrie = Nil
 
